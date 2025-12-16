@@ -1,0 +1,9 @@
+{
+  "project_name": "readmission-risk-model",
+  "author": "Chaz Manning",
+  "version": "0.1.0",
+  "model_type": "logistic_regression",
+  "training_data_path": "data/train_readmission.csv",
+  "output_dir": "artifacts/",
+  "enable_encryption": true
+}
