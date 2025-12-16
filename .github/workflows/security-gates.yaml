@@ -39,7 +39,7 @@ jobs:
           cat configs/pipeline_config.json
 
           echo "Running security configuration validation..."
-          if secure-config-checker -- config configs/pipeline_config.json; then
+          if secure-config-checker --config configs/pipeline_config.json; then
             echo "Security configuration validation passed."
           else
             echo "Security configuration validation failed."
