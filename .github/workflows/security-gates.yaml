@@ -24,7 +24,7 @@ jobs:
       - name: Install security tools (pinned)
         run: |
           python -m pip install --upgrade pip
-          pip install "git+https://github.com/Manning-MLSecOps/ml-secops-security-tools.git@main"
+          pip install "git+https://github.com/Manning-MLSecOps/ml-secops-security-tools.git@62c62dba5a56504e11770cb70189833b6de6f7ff"
 
       - name: Validate config (fail closed if missing)
         run: |
