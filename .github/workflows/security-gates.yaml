@@ -27,5 +27,5 @@ jobs:
 
       - name: Validate config
         run: |
-          python -c "import sys; import pathlib; p=pathlib.Path('configs/pipeline_config.json'); sys.exit(0 if p.exist() else 1)"
+          python -c "import sys; import pathlib; p=pathlib.Path('configs/pipeline_config.json'); sys.exit(0 if p.exists() else 1)"
           python -m secure_config_checker.cli --config configs/pipeline_config.json
