@@ -27,5 +27,11 @@ jobs:
 
       - name: Validate config
         run: |
-          python -c "import sys; import pathlib; p=pathlib.Path('configs/pipeline_config.json'); sys.exit(0 if p.exists() else 1)"
-          python -m secure_config_checker.cli --config configs/pipeline_config.json
+          echo "Starting pipeline security configuration validation..."
+
+          if python -m secure_config_checker.cli --config configs/pipeline_config.json; then
+            echo "SECURITY POLICY PASSED: Pipeline configuration is compliant."
+          else
+            echo "SECURITY POLICY FAILED: Pipeline configuration is NOT compliant!"
+            exit 1
+          fi
