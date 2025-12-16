@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+venv/
+.env/
+
+# Data (never commit real data)
+data/raw/
+data/processed/
+
+# ML artifacts
+mlruns/
+models/
+
+# OS
+.DS_Store
