@@ -26,13 +26,21 @@ jobs:
           python -m pip install --upgrade pip
           pip install "git+https://github.com/Manning-MLSecOps/ml-secops-security-tools.git@main"
 
-      - name: Validate config
+      - name: Validate config (fail closed if missing)
         run: |
-          echo "Starting pipeline security configuration validation..."
+          set -euo pipefail
 
-          if python -m secure_config_checker.cli --config configs/pipeline_config.json; then
-            echo "SECURITY POLICY PASSED: Pipeline configuration is compliant."
-          else
-            echo "SECURITY POLICY FAILED: Pipeline configuration is NOT compliant!"
-            exit 1
-          fi
+          echo "Starting pipeline security configuration validation..."
+          echo "PWD=$(pwd)"
+
+          echo "=== Repo root ==="
+          ls -la
+
+          echo "=== configs dir ==="
+          ls -la configs || true
+
+          test -f configs/pipeline_config.json
+          echo "✅ Found configs/pipeline_config.json"
+
+          python -m secure_config_checker.cli --config configs/pipeline_config.json
+          echo "✅ SECURITY POLICY PASSED"
