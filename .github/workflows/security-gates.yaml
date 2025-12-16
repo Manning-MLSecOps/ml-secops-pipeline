@@ -31,16 +31,17 @@ jobs:
           set -euo pipefail
 
           echo "Starting pipeline security configuration validation..."
-          echo "PWD=$(pwd)"
 
-          echo "=== Repo root ==="
-          ls -la
-
-          echo "=== configs dir ==="
-          ls -la configs || true
-
+          echo "Checking if required config file exists..."
           test -f configs/pipeline_config.json
-          echo " Found configs/pipeline_config.json"
 
-          python -m secure_config_checker.cli --config configs/pipeline_config.json
-          echo " SECURITY POLICY PASSED"
+          echo "Config file found showing contents"
+          cat configs/pipeline_config.json
+
+          echo "Running security configuration validation..."
+          if secure-config-checker -- config configs/pipeline_config.json; then
+            echo "Security configuration validation passed."
+          else
+            echo "Security configuration validation failed."
+            exit 1
+          fi
