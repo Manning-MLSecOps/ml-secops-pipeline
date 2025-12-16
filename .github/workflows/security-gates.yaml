@@ -1,3 +1,4 @@
+# Trigger re-run after security tool fail-closed update
 name: Security Gates
 
 on:
