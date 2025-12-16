@@ -40,7 +40,7 @@ jobs:
           ls -la configs || true
 
           test -f configs/pipeline_config.json
-          echo "✅ Found configs/pipeline_config.json"
+          echo " Found configs/pipeline_config.json"
 
           python -m secure_config_checker.cli --config configs/pipeline_config.json
-          echo "✅ SECURITY POLICY PASSED"
+          echo " SECURITY POLICY PASSED"

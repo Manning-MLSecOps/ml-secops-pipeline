@@ -5,5 +5,5 @@
   "model_type": "logistic_regression",
   "training_data_path": "data/train_readmission.csv",
   "output_dir": "artifacts/",
-  "enable_encryption": true
+  "enable_encryption": false
 }
