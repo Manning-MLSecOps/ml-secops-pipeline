@@ -7,3 +7,4 @@
   "output_dir": "artifacts/",
   "enable_encryption": true
 }
+THIS_WILL_BREAK_JSON
