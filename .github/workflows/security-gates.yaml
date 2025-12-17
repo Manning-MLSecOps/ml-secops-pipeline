@@ -66,4 +66,4 @@ jobs:
       - name: Train model (from config)
         run: |
           set -euo pipefail
-          python scr/train.py
+          python src/train.py
