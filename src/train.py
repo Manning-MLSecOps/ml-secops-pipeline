@@ -1,6 +1,7 @@
 import json
 import os
 import sys
+import joblib
 from pathlib import Path
 
 import pandas as pd 
@@ -48,6 +49,10 @@ def main() -> None:
 
     model = LogisticRegression(max_iter=500)
     model.fit(X_train, y_train)
+    
+    model_path = out_dir / "model.joblib"
+    joblib.dump(model, model_path)
+    print(f'Saved trained model to {model_path}')
 
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
