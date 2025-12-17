@@ -72,3 +72,10 @@ jobs:
         run: |
           set -euo pipefail
           python src/train.py
+
+      - name: Upload training metrics artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: training-metrics
+          path: artifacts/metrics.json
+          if-no-files-found: error
