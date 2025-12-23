@@ -79,3 +79,10 @@ jobs:
           name: training-metrics
           path: artifacts/metrics.json
           if-no-files-found: error
+
+      - name: Upload trained model artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trained-model
+          path: artifacts/model.joblib
+          if-no-files-found: error

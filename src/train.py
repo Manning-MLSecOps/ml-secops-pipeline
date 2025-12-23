@@ -1,7 +1,7 @@
 import json
 import os
 import sys
-import joblib
+import joblib 
 from pathlib import Path
 
 import pandas as pd 
@@ -49,6 +49,7 @@ def main() -> None:
 
     model = LogisticRegression(max_iter=500)
     model.fit(X_train, y_train)
+    
     
     model_path = out_dir / "model.joblib"
     joblib.dump(model, model_path)
