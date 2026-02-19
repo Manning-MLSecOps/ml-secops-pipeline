@@ -2,6 +2,7 @@ import json
 import os
 import sys
 import joblib 
+import hashlib
 from pathlib import Path
 
 import pandas as pd 
@@ -49,12 +50,22 @@ def main() -> None:
 
     model = LogisticRegression(max_iter=500)
     model.fit(X_train, y_train)
-    
-    
+        
     model_path = out_dir / "model.joblib"
     joblib.dump(model, model_path)
     print(f'Saved trained model to {model_path}')
 
+    # Week 3 day 2 : Model integrity hash
+    hasher = hashlib.sha256()
+    with model_path.open("rb") as mf:
+        hasher.update(mf.read())
+    model_hash = hasher.hexdigest()
+    
+    hash_path = out_dir / "model.sha256"
+    with hash_path.open("w") as hf:
+        hf.write(model_hash)
+        
+    print(f"Saved model integrity hash to {hash_path}")
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
 

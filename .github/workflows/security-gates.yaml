@@ -95,3 +95,10 @@ jobs:
           name: trained-model
           path: artifacts/model.joblib
           if-no-files-found: error
+
+      - name: Upload model hash artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: trained-model-hash
+          path: artifacts/model.sha256
+          if-no-files-found: error
