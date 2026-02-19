@@ -58,13 +58,32 @@ def main() -> None:
     preds = model.predict(X_test)
     acc = accuracy_score(y_test, preds)
 
+    # Week 3: Accuracy thereshhold enforcement
+    threshold = float(cfg.get("min_accuracy", 0.85)) #default if not set
+    passed = acc >= threshold
+
     metrics_path = out_dir / "metrics.json"
     with metrics_path.open("w") as f:
-        json.dump({"accuracy": acc}, f, indent=2)
+        json.dump(
+            {
+                "accuracy": acc,
+                "min_accuracy": threshold,
+                "passed_threshold": passed,
+            },
+            f,
+            indent=2
+        )
 
     print(f"Training complete. Accuracy={acc:.4f}")
+    print(f"Minimum required accuracy={threshold:.2f}")
     print(f"Saved metrics to {metrics_path}")
 
+    if not passed:
+        print(
+            f"ERROR: Accuracy {acc:.4f} is below required threshold {threshold:.2f}"
+            
+        )
+        sys.exit(1)
 
 if __name__ == "__main__":
     main()
